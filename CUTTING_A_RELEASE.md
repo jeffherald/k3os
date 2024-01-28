@@ -5,3 +5,10 @@
 ```bash
 ENV VERSION vx.x.x+xxx
 ```
+* run `make`
+* tag docker image with version label: `docker tag k3os:<branch> jeffherald/k3os:<release tag>`
+* push to dockerhub: `docker push jeffherald/k3os:<release tag>`
+* tag release in git: `git tag <releae tag>` ex. v0.28.5-k3s1r0
+* push tag: `git push origin <release tag>`
+* navigate to the github [releases](https://github.com/jeffherald/k3os/releases) page and click `Draft a new release`
+* choose the release tag in `Choose a tag` dropdown, enter title and description and attach binaries and click `Publish release`
