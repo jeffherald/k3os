@@ -6,7 +6,7 @@
 ENV VERSION vx.x.x+xxx
 ```
 * run `make`
-* tag docker image with version label: `docker tag k3os:<branch> jeffherald/k3os:<release tag>`
+* tag docker image with version label: `docker tag k3os:latest jeffherald/k3os:<release tag>`
 * push to dockerhub: `docker push jeffherald/k3os:<release tag>`
 * tag release in git: `git tag <releae tag>` ex. v0.28.5-k3s1r0
 * push tag: `git push origin <release tag>`
