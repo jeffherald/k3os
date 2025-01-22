@@ -7,6 +7,8 @@ fi
 COMMIT=$(git rev-parse --short HEAD)
 GIT_TAG=${DRONE_TAG:-$(git tag -l --contains HEAD | head -n 1)}
 
+echo "Git tag: ${DRONE_TAG}:${GIT_TAG}:${DIRTY}"
+
 if [[ -z "$DIRTY" && -n "$GIT_TAG" ]]; then
     VERSION=$GIT_TAG
 else
@@ -16,6 +18,9 @@ fi
 if [ -z "$ARCH" ]; then
     ARCH=$(go env GOHOSTARCH)
 fi
+
+echo ${VERSION}
+exit 1
 
 ARCH=${ARCH:-"amd64"}
 TAG=${TAG:-"${VERSION}-${ARCH}"}

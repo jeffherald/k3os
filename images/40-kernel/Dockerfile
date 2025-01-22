@@ -11,7 +11,7 @@ COPY --from=kernel /output/ /usr/src/kernel/
 
 RUN mkdir -p /usr/src/initrd/lib && \
     cd /usr/src/kernel && \
-    tar cf - -T initrd-modules -T initrd-firmware | tar xf - -C /usr/src/initrd/ && \
+    tar cf - -T initrd-modules -T initrd-firmware | tar xvf - -C /usr/src/initrd/ && \
     depmod -b /usr/src/initrd $(cat /usr/src/kernel/version)
 
 RUN mkdir -p /output && \
