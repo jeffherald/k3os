@@ -237,7 +237,7 @@ func doMounts() {
 	for _, cg := range cgroupList() {
 		path := filepath.Join("/sys/fs/cgroup", cg)
 		mkdir(path, 0555)
-		mount(cg, path, "cgroup", noexec|nosuid|nodev, cg)
+		mount(cg, path, "cgroup2", noexec|nosuid|nodev, cg)
 	}
 
 	// use hierarchy for memory
@@ -245,7 +245,7 @@ func doMounts() {
 
 	// many things assume systemd
 	mkdir("/sys/fs/cgroup/systemd", 0555)
-	mount("cgroup", "/sys/fs/cgroup/systemd", "cgroup", 0, "none,name=systemd")
+	mount("cgroup", "/sys/fs/cgroup/systemd", "cgroup2", 0, "none,name=systemd")
 
 	// make / rshared
 	mount("", "/", "", rec|shared, "")
