@@ -4,6 +4,8 @@
 
 # k3OS
 
+> [!WARNING] K3OS is no longer maintained or supported and should be used at your own risk.
+
 k3OS is a Linux distribution designed to remove as much OS maintenance
 as possible in a Kubernetes cluster. It is specifically designed to only
 have what is needed to run [k3s](https://github.com/rancher/k3s). Additionally
