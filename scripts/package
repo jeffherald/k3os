@@ -24,8 +24,11 @@ ID=$(docker create ${REPO}/k3os-package:${TAG})
 docker cp ${ID}:/output/k3os ./build/
 echo "Removing $ID"
 
-sleep 5;
-docker rm -fv $ID
+until docker rm -fv $ID
+do
+  echo "..."
+  sleep 1
+done
 
 echo "Step 3"
 docker build \
