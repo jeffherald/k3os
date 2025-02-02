@@ -23,12 +23,7 @@ mkdir -p ./build
 ID=$(docker create ${REPO}/k3os-package:${TAG})
 docker cp ${ID}:/output/k3os ./build/
 echo "Removing $ID"
-
-until docker rm -fv $ID
-do
-  echo "..."
-  sleep 1
-done
+docker_rm $ID
 
 echo "Step 3"
 docker build \

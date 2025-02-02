@@ -35,6 +35,7 @@ RUN apk --no-cache add \
     libc6-compat \
     libusb \
     logrotate \
+    lspci \
     lsscsi \
     lvm2 \
     lvm2-extra \
@@ -58,6 +59,7 @@ RUN apk --no-cache add \
     strace \
     smartmontools \
     sudo \
+    tailscale \
     tar \
     tzdata \
     util-linux \
