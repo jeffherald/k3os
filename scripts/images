@@ -55,7 +55,7 @@ copy_all()
         echo $(readlink -f ${OUTPUT})
         rm -rf output
         docker cp ${ID}:/output .
-        #docker rm -fv $ID
+        docker rm -fv $ID
         cp ./output/* ${OUTPUT}/
         rm -rf ./output
         cd ..

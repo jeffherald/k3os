@@ -13,6 +13,7 @@ RUN apt update && \
         linux-headers-${KVERSION} \
         linux-image-${KVERSION} \
         linux-modules-${KVERSION} \
+        linux-modules-extra-${KVERSION} \
         lz4 \
         rsync \
         xz-utils \
