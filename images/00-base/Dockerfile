@@ -42,10 +42,12 @@ RUN apk --no-cache add \
     mdadm-misc \
     mdadm-udev \
     mdev-conf \
+    mg \
     multipath-tools \
     ncurses \
     ncurses-terminfo \
     nfs-utils \
+    nano \
     open-iscsi \
     openrc \
     openssh-client \
@@ -63,6 +65,7 @@ RUN apk --no-cache add \
     tar \
     tzdata \
     util-linux \
+    usbutils \
     vim \
     wireguard-tools \
     wpa_supplicant \
