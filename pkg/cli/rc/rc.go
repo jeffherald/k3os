@@ -82,7 +82,7 @@ func symlink(oldpath string, newpath string) {
 // mkdirall with warning
 func mkdir(path string, perm os.FileMode) {
 	err := os.MkdirAll(path, perm)
-	if err != nil {
+	if err != nil && err != os.ErrExist {
 		log.Printf("error making directory %s: %v", path, err)
 	}
 }
@@ -245,8 +245,8 @@ func doMounts() {
 	//write("/sys/fs/cgroup/memory/memory.use_hierarchy", "1")
 
 	// many things assume systemd
-	mkdir("/sys/fs/cgroup/systemd", 0555)
-	mount("cgroup", "/sys/fs/cgroup/systemd", "cgroup2", 0, "none,name=systemd")
+	//mkdir("/sys/fs/cgroup/systemd", 0555)
+	//mount("cgroup", "/sys/fs/cgroup/systemd", "cgroup2", 0, "none,name=systemd")
 
 	// make / rshared
 	mount("", "/", "", rec|shared, "")
