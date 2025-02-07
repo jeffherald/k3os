@@ -160,7 +160,7 @@ install_grub()
 set default=0
 set timeout=10
 
-set gfxmode=auto
+set gfxmode=1280x1024x16,auto
 set gfxpayload=keep
 insmod all_video
 insmod gfxterm
