@@ -1,11 +1,11 @@
 ### BASE ###
-FROM alpine:3.14 as base
+FROM alpine:3.21 as base
 ARG ARCH
 RUN apk --no-cache add \
     bash \
     bash-completion \
     blkid \
-    busybox-initscripts \
+    busybox-extras \
     ca-certificates \
     connman \
     conntrack-tools \
@@ -41,15 +41,19 @@ RUN apk --no-cache add \
     mdadm \
     mdadm-misc \
     mdadm-udev \
+    mdev-conf \
+    mg \
     multipath-tools \
     ncurses \
     ncurses-terminfo \
     nfs-utils \
+    nano \
     open-iscsi \
     openrc \
     openssh-client \
     openssh-server \
     parted \
+    pciutils \
     procps \
     qemu-guest-agent \
     rng-tools \
@@ -57,9 +61,11 @@ RUN apk --no-cache add \
     strace \
     smartmontools \
     sudo \
+    tailscale \
     tar \
     tzdata \
     util-linux \
+    usbutils \
     vim \
     wireguard-tools \
     wpa_supplicant \

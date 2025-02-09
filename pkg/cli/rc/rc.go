@@ -82,7 +82,7 @@ func symlink(oldpath string, newpath string) {
 // mkdirall with warning
 func mkdir(path string, perm os.FileMode) {
 	err := os.MkdirAll(path, perm)
-	if err != nil {
+	if err != nil && err != os.ErrExist {
 		log.Printf("error making directory %s: %v", path, err)
 	}
 }
@@ -231,21 +231,22 @@ func doMounts() {
 	// misc /proc mounted fs
 	mountSilent("binfmt_misc", "/proc/sys/fs/binfmt_misc", "binfmt_misc", noexec|nosuid|nodev, "")
 
+	// cgroup2 root is mounted in mtab
 	// mount cgroup root tmpfs
-	mount("cgroup_root", "/sys/fs/cgroup", "tmpfs", nodev|noexec|nosuid, "mode=755,size=10m")
+	// mount("none", "/sys/fs/cgroup", "cgroup2", nodev|noexec|nosuid, "mode=755,size=10m")
 	// mount cgroups filesystems for all enabled cgroups
-	for _, cg := range cgroupList() {
-		path := filepath.Join("/sys/fs/cgroup", cg)
-		mkdir(path, 0555)
-		mount(cg, path, "cgroup", noexec|nosuid|nodev, cg)
-	}
+	// for _, cg := range cgroupList() {
+	// 	path := filepath.Join("/sys/fs/cgroup", cg)
+	// 	mkdir(path, 0555)
+	// 	mount(cg, path, "cgroup2", noexec|nosuid|nodev, cg)
+	// }
 
 	// use hierarchy for memory
-	write("/sys/fs/cgroup/memory/memory.use_hierarchy", "1")
+	//write("/sys/fs/cgroup/memory/memory.use_hierarchy", "1")
 
 	// many things assume systemd
-	mkdir("/sys/fs/cgroup/systemd", 0555)
-	mount("cgroup", "/sys/fs/cgroup/systemd", "cgroup", 0, "none,name=systemd")
+	//mkdir("/sys/fs/cgroup/systemd", 0555)
+	//mount("cgroup", "/sys/fs/cgroup/systemd", "cgroup2", 0, "none,name=systemd")
 
 	// make / rshared
 	mount("", "/", "", rec|shared, "")

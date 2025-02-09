@@ -55,9 +55,19 @@ copy_all()
         echo $(readlink -f ${OUTPUT})
         rm -rf output
         docker cp ${ID}:/output .
-        docker rm -fv $ID
+        docker_rm $ID
         cp ./output/* ${OUTPUT}/
         rm -rf ./output
         cd ..
     done
+}
+
+docker_rm()
+{
+    ID=$1
+    until docker rm -fv $ID
+    do
+        echo "..."
+        sleep 1
+    done    
 }

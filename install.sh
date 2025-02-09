@@ -81,11 +81,11 @@ do_format()
         BOOT_NUM=1
         STATE_NUM=2
         parted -s ${DEVICE} mkpart primary fat32 0% 50MB
-        parted -s ${DEVICE} mkpart primary ext4 50MB 750MB
+        parted -s ${DEVICE} mkpart primary ext4 50MB 2048MB
     else
         BOOT_NUM=
         STATE_NUM=1
-        parted -s ${DEVICE} mkpart primary ext4 0% 700MB
+        parted -s ${DEVICE} mkpart primary ext4 0% 2048MB
     fi
     parted -s ${DEVICE} set 1 ${BOOTFLAG} on
     partprobe ${DEVICE} 2>/dev/null || true
@@ -160,7 +160,7 @@ install_grub()
 set default=0
 set timeout=10
 
-set gfxmode=auto
+set gfxmode=1280x1024x16,auto
 set gfxpayload=keep
 insmod all_video
 insmod gfxterm
