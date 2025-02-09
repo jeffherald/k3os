@@ -1,2 +1,0 @@
-FROM k3os:6-8-kernel-k3s-v1-32-0
-COPY . /go/src/github.com/rancher/k3os/
